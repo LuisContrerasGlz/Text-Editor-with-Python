@@ -15,9 +15,9 @@ def main():
     save_button = tk.Button(frame, text= "Save")
     open_button = tk.Button(frame, text= "Open")
 
-    save_button.grid(row=0, column=0)
-    open_button.grid(row=1, column=0)
-    frame.grid(row=0, column=0)
+    save_button.grid(row=0, column=0, padx=5, pady=5)
+    open_button.grid(row=1, column=0, padx=5)
+    frame.grid(row=0, column=0, sticky="ns")
 
     window.mainloop()
 
