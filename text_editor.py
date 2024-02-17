@@ -1,5 +1,12 @@
 import tkinter as tk
+from tkinter.filedialog import askopenfile, asksaveasfile
 
+
+def open_file():
+    pass
+
+def save_file():
+    pass
 
 def main():
     window = tk.Tk()
