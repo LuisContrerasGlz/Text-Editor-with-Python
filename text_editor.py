@@ -43,6 +43,9 @@ def main():
     open_button.grid(row=1, column=0, padx=5, sticky="ew")
     frame.grid(row=0, column=0, sticky="ns")
 
+    window.bind("<Control-s>", lambda x: save_file(window, text_edit))
+    window.bind("<Control-o>", lambda x: open_file(window, text_edit))
+
     window.mainloop()
 
 main()
