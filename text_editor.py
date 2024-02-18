@@ -8,37 +8,49 @@ def open_file(window, text_edit):
     # Ask the user to select a file
     filepath = askopenfilename(filetypes=[("Text Files", "*.txt")])
 
-    # If the user cancels the file selection, do nothing
-    if not filepath:
-        return
-    
-    # Clear the existing content in the text editor
-    text_edit.delete(1.0,tk.END)
+# Check if a file path has been selected
+    if filepath:
+        try:
+            # Attempt to open the selected file in read mode
+            with open(filepath, "r") as f:
+                # Read the content of the file
+                content = f.read()
 
-    # Read the content from the selected file and insert it into the text editor
-    with open(filepath, "r") as f:
-        content = f.read()
-        text_edit.insert(tk.END, content)
+                 # Clear the existing content in the text editor
+                text_edit.delete(1.0, tk.END)
 
-    # Set the window title to display the opened file's path
-    window.title(f"Open File: {filepath}")
+                # Insert the content of the file into the text editor
+                text_edit.insert(tk.END, content)
+
+            # Update the window title to indicate the opened file    
+            window.title(f"Open File: {filepath}")
+
+        # Handle exceptions that may occur during file opening and display an error message using a message box    
+        except Exception as e:
+            messagebox.showerror("Error", f"Error opening file: {str(e)}")
  
 # Function to save the content of the text editor to a file
 def save_file(window, text_edit):
     # Ask the user to select a file to save the content
     filepath = asksaveasfilename(filetypes=[("Text Files", "*.txt")])
 
-    # If the user cancels the file selection, do nothing
-    if not filepath:
-        return
-    
-    # Write the content of the text editor to the selected file
-    with open(filepath, "w") as f:
-        content = text_edit.get(1.0, tk.END)
-        f.write(content)
+    # Check if a file path has been selected
+    if filepath:
+        try:
+            # Attempt to open the selected file in write mode
+            with open(filepath, "w") as f:
+                # Retrieve the content from the text editor
+                content = text_edit.get(1.0, tk.END)
 
-    # Set the window title to display the saved file's path
-    window.title(f"Open File: {filepath}")
+                # Write the content to the selected file
+                f.write(content)
+
+            # Update the window title to indicate the saved file    
+            window.title(f"Save File: {filepath}")
+
+        # Handle exceptions that may occur during file saving and display an error message using a message box    
+        except Exception as e:
+            messagebox.showerror("Error", f"Error saving file: {str(e)}")
 
 # Function to close the program
 def close_program(window):
