@@ -1,4 +1,5 @@
 import tkinter as tk
+from tkinter import messagebox
 from tkinter.filedialog import askopenfilename, asksaveasfilename
 
 
@@ -39,6 +40,11 @@ def save_file(window, text_edit):
     # Set the window title to display the saved file's path
     window.title(f"Open File: {filepath}")
 
+# Function to close the program
+def close_program(window):
+    if messagebox.askokcancel("Close Program", "Are you sure you want to close the program?"):
+        window.destroy()
+
 # Main function to create the GUI and handle user interactions
 def main():
     # Create the main window
@@ -55,10 +61,12 @@ def main():
     frame = tk.Frame(window, relief=tk.RAISED, bd=2)
     save_button = tk.Button(frame, text= "Save", command=lambda: save_file(window, text_edit))
     open_button = tk.Button(frame, text= "Open", command=lambda: open_file(window, text_edit))
+    close_button = tk.Button(frame, text="Close", command=lambda: close_program(window))
 
     # Place the buttons in the frame and the frame in the window
     save_button.grid(row=0, column=0, padx=5, pady=5, sticky="ew")
     open_button.grid(row=1, column=0, padx=5, sticky="ew")
+    close_button.grid(row=2, column=0, padx=5, pady=5, sticky="ew")
     frame.grid(row=0, column=0, sticky="ns")
 
     # Bind keyboard shortcuts for saving and opening files
