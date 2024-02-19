@@ -5,10 +5,22 @@ from tkinter.filedialog import askopenfilename, asksaveasfilename
 
 # Function to open a file and populate the text editor
 def open_file(window, text_edit):
+    """
+    Open a file and populate the text editor.
+
+    Parameters:
+        window (tk.Tk): The main window.
+        text_edit (tk.Text): The text editor widget.
+
+    Raises:
+        FileNotFoundError: If the selected file is not found.
+        Exception: For any other unexpected errors during file opening.
+    """
+
     # Ask the user to select a file
     filepath = askopenfilename(filetypes=[("Text Files", "*.txt")])
 
-# Check if a file path has been selected
+    # Check if a file path has been selected
     if filepath:
         try:
             # Attempt to open the selected file in read mode
@@ -31,6 +43,18 @@ def open_file(window, text_edit):
  
 # Function to save the content of the text editor to a file
 def save_file(window, text_edit):
+    """
+    Save the content of the text editor to a file.
+
+    Parameters:
+        window (tk.Tk): The main window.
+        text_edit (tk.Text): The text editor widget.
+
+    Raises:
+        PermissionError: If permission is denied to write to the selected file.
+        Exception: For any other unexpected errors during file saving.
+    """
+
     # Ask the user to select a file to save the content
     filepath = asksaveasfilename(filetypes=[("Text Files", "*.txt")])
 
@@ -54,11 +78,22 @@ def save_file(window, text_edit):
 
 # Function to close the program
 def close_program(window):
+    """
+    Close the program with user confirmation.
+
+    Parameters:
+        window (tk.Tk): The main window.
+    """
+    
     if messagebox.askokcancel("Close Program", "Are you sure you want to close the program?"):
         window.destroy()
 
 # Main function to create the GUI and handle user interactions
 def main():
+    """
+    Create the GUI for the text editor and handle user interactions.
+    """
+
     # Create the main window
     window = tk.Tk()
     window.title("Text Editor with Python")
